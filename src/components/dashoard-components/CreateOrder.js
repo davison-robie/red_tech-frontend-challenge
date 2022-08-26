@@ -41,7 +41,7 @@ function CreateOrder(props) {
         setCustomerName("");
         setCreatedDate("");
         setCreatedByUserName("");
-        props.setData(props.getOrders());
+        props.getOrders();
         console.log(ordersData);
       })
       .catch((err) => {

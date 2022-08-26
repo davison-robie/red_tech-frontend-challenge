@@ -26,6 +26,7 @@ function OrdersDashboard() {
   };
 
   const getOrders = async () => {
+    setLoading(true);
     try {
       const response = await fetch(baseUrl, getOrdersOptions);
       if (!response.ok) {
@@ -62,11 +63,9 @@ function OrdersDashboard() {
       body: JSON.stringify(selected),
       headers: myHeaders,
     })
-      .then((res) => res.json())
-      .then((ordersData) => {
-        console.log(ordersData);
+      .then(() => {
         console.log(selected);
-        setData(getOrders());
+        getOrders();
         setDeleteOpen(false);
       })
       .catch((err) => {
@@ -137,3 +136,5 @@ function OrdersDashboard() {
 }
 
 export default OrdersDashboard;
+
+// {"errors":{"[0]":["Input string '730b3c60-75d9-4f48-a28a-a9f07df6c1ea' is not a valid number. Path '[0]', line 1, position 37."]},"type":"https://tools.ietf.org/html/rfc7231#section-6.5.1","title":"One or more validation errors occurred.","status":400,"traceId":"|bd2c00ae-424d0e2d8208eb47."}

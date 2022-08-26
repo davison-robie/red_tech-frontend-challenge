@@ -39,6 +39,16 @@ function DeleteOrder(props) {
             >
               Delete Selected
             </Button>
+            <Button
+              variant="contained"
+              sx={{ ml: "1.5rem" }}
+              startIcon={<DeleteIcon />}
+              onClick={() => {
+                props.confirmDeleteOrders();
+              }}
+            >
+              Nevermind
+            </Button>
           </Stack>
         </Box>
       </Modal>
