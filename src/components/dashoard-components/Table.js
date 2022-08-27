@@ -7,31 +7,39 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Checkbox from "@mui/material/Checkbox";
+import EditIcon from "@mui/icons-material/Edit";
 
 export default function DataTable(props) {
-  const [checked, setChecked] = useState(false);
   const isSelected = (row) => props.selected.indexOf(row) !== -1;
 
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
+  // const handleChange = (event) => {
+  //   setChecked(event.target.checked);
+  // };
 
   function orderTypeFilter(order) {
     return order.orderType == props.orderType;
   }
 
-  function searchBarFilter(order) {
-    return order.orderType === props.orderType;
-  }
-
-  const filteredDataArray =
+  const orderFilterArray =
     props.orderType === "All Orders"
       ? props.data
       : props.data.filter(orderTypeFilter);
 
+  function searchFilter(order) {
+    return (
+      order.customerName.includes(props.searchQuery) ||
+      order.orderId.includes(props.searchQuery)
+    );
+  }
+
+  const searchFilterArray =
+    props.searchQuery === ""
+      ? orderFilterArray
+      : orderFilterArray.filter(searchFilter);
+
   return (
     <Fragment>
-      {filteredDataArray.length === 0 ? (
+      {searchFilterArray.length === 0 ? (
         <div>There are no orders to show...</div>
       ) : (
         <TableContainer component={Paper}>
@@ -49,7 +57,7 @@ export default function DataTable(props) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {filteredDataArray.map((row, index) => {
+              {searchFilterArray.map((row, index) => {
                 const isItemSelected = isSelected(row.orderId);
                 // const labelId = `table-checkbox-${index}`;
                 return (
@@ -73,6 +81,9 @@ export default function DataTable(props) {
                       </TableCell>
                       <TableCell align="right">{row.orderType}</TableCell>
                       <TableCell align="right">{row.customerName}</TableCell>
+                      <TableCell>
+                        <EditIcon />
+                      </TableCell>
                     </TableRow>
                   </Fragment>
                 );

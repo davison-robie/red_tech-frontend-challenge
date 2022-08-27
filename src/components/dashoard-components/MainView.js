@@ -10,6 +10,9 @@ import DataTable from "./Table";
 import { Fragment } from "react";
 
 function MainView(props) {
+  function searchBarChange(e) {
+    props.handleSearch(e.target.value);
+  }
   return (
     <Fragment>
       <Toolbar>
@@ -18,6 +21,8 @@ function MainView(props) {
           label="Customer Search"
           variant="outlined"
           size="small"
+          value={props.searchQuery}
+          onChange={searchBarChange}
         />
 
         <Button
@@ -70,6 +75,7 @@ function MainView(props) {
           data={props.data}
           handleClick={props.handleClick}
           selected={props.selected}
+          searchQuery={props.searchQuery}
         />
       )}
     </Fragment>

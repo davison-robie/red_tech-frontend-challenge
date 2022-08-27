@@ -11,6 +11,7 @@ function OrdersDashboard() {
   const [selected, setSelected] = useState([]);
   const [createOrderView, setCreateOrderView] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const baseUrl = `https://red-candidate-web.azurewebsites.net/api/Orders`;
 
@@ -47,6 +48,15 @@ function OrdersDashboard() {
   useEffect(() => {
     getOrders();
   }, []);
+
+  function handleSearch(newSearchQuery) {
+    setSearchQuery(newSearchQuery);
+    // data.map((order) => {
+    //   if (order.includes(searchQuery)) {
+    //     setFilteredData();
+    //   }
+    // });
+  }
 
   const handleChange = (event) => {
     setOrderType(event.target.value);
@@ -122,7 +132,10 @@ function OrdersDashboard() {
           deleteOrders={deleteOrders}
           createOrder={createOrder}
           handleChange={handleChange}
+          handleSearch={handleSearch}
           selected={selected}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
         />
       )}
       <DeleteOrder

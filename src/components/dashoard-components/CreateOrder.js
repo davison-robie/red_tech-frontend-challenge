@@ -26,10 +26,9 @@ function CreateOrder(props) {
     fetch(props.baseUrl, {
       method: "POST",
       body: JSON.stringify({
-        orderId: orderId,
+        orderId: "a6a3fc82-2e9f-4292-9b8e-f4b0dfb4db60",
         orderType: orderType,
         customerName: customerName,
-        createdDate: createdDate,
         createdByUserName: createdByUserName,
       }),
       headers: props.myHeaders,
@@ -51,8 +50,8 @@ function CreateOrder(props) {
 
   return (
     <Fragment>
-      <Box sx={{ maxWidth: "50rem", marginTop: "1rem" }}>
-        <Stack spacing={2}>
+      <Box sx={{ maxWidth: "50rem", margin: "1rem" }}>
+        <Stack spacing={5}>
           <Button
             sx={{ maxWidth: 300 }}
             variant="contained"
@@ -63,7 +62,7 @@ function CreateOrder(props) {
           >
             Back to Order List
           </Button>
-          <FormControl size="small" sx={{ minWidth: 300, maxWidth: "50rem" }}>
+          <FormControl size="small" sx={{ minWidth: 350, width: "50%" }}>
             <InputLabel>Order Type</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -84,6 +83,7 @@ function CreateOrder(props) {
             label="Customer"
             variant="outlined"
             size="small"
+            value={customerName}
             onChange={(e) => setCustomerName(e.target.value)}
           />
           <TextField
@@ -91,21 +91,8 @@ function CreateOrder(props) {
             label="Created By"
             variant="outlined"
             size="small"
+            value={createdByUserName}
             onChange={(e) => setCreatedByUserName(e.target.value)}
-          />
-          <TextField
-            id="orderId"
-            label="Order ID"
-            variant="outlined"
-            size="small"
-            onChange={(e) => setOrderId(e.target.value)}
-          />
-          <TextField
-            id="createdDate"
-            label="Creation Date"
-            variant="outlined"
-            size="small"
-            onChange={(e) => setCreatedDate(e.target.value)}
           />
           <Button
             sx={{ maxWidth: 300 }}

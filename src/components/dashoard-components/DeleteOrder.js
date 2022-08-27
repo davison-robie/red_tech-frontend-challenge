@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Fragment } from "react";
 import { Button, Box } from "@mui/material";
 import Stack from "@mui/material/Stack";
-import Typography from "@mui/material";
+import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -28,9 +28,13 @@ function DeleteOrder(props) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Stack>
+          <Stack spacing={5}>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Delete Selected Orders?
+            </Typography>
             <Button
               variant="contained"
+              color="warning"
               sx={{ ml: "1.5rem" }}
               startIcon={<DeleteIcon />}
               onClick={() => {
@@ -44,7 +48,7 @@ function DeleteOrder(props) {
               sx={{ ml: "1.5rem" }}
               startIcon={<DeleteIcon />}
               onClick={() => {
-                props.confirmDeleteOrders();
+                props.closeDelete();
               }}
             >
               Nevermind
