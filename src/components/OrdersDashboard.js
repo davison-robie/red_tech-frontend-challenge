@@ -13,11 +13,11 @@ function OrdersDashboard() {
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const baseUrl = `https://red-candidate-web.azurewebsites.net/api/Orders`;
+  const baseUrl = process.env.REACT_APP_BASEURL;
 
   const myHeaders = new Headers({
     "Content-Type": "application/json",
-    ApiKey: "b7b77702-b4ec-4960-b3f7-7d40e44cf5f4",
+    ApiKey: process.env.REACT_APP_API_KEY,
   });
 
   const getOrdersOptions = {
